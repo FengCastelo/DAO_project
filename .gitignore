@@ -69,3 +69,5 @@ Desktop.ini
 
 # Env files
 .env
+
+*.properties
