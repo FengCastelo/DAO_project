@@ -1,7 +1,9 @@
 package db;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
@@ -13,9 +15,9 @@ public class DB {
         if (connect == null){
             try{
                 Properties props = loadProperties();
+                String user = props.getProperty("user");
+                String password = props.getProperty("password");
                 String url = props.getProperty("dbUrl");
-                String user = "root";
-                String password = "1234567";
 
                 connect = DriverManager.getConnection(url, user, password);
             }
@@ -37,16 +39,16 @@ public class DB {
         }
     }
 
-    private static Properties loadProperties(){
-        try(FileInputStream fs = new FileInputStream("db.properties")){
+    public static Properties loadProperties() {
+        try (InputStream fs = new FileInputStream("db.properties")) {
             Properties props = new Properties();
             props.load(fs);
             return props;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new DbException(e.getMessage());
         }
     }
+
 
     public static void closeStatement(Statement st){
         if(st != null){
