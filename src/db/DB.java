@@ -14,6 +14,7 @@ public class DB {
     public static Connection getConnection(){
         if (connect == null){
             try{
+               //Encapsulation working and data secure.
                 Properties props = loadProperties();
                 String user = props.getProperty("user");
                 String password = props.getProperty("password");
