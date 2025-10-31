@@ -4,7 +4,7 @@ import Model.dao.impl.DepartmentDaoJDBC;
 import Model.dao.impl.SellerDaoJDBC;
 import db.DB;
 
-public class DAOFactory {
+public class DaoFactory {
 
     public static SellerDAO createSellerDao(){
         return new SellerDaoJDBC(DB.getConnection());

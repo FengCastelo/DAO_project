@@ -1,27 +1,47 @@
 package Applications;
 
-import Model.Entities.Department;
-import Model.dao.DAOFactory;
-import Model.dao.DepartmentDAO;
-
+import java.util.List;
 import java.util.Scanner;
 
+import Model.dao.DaoFactory;
+import Model.dao.DepartmentDAO;
+import Model.Entities.Department;
+
 public class Program2 {
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
-        DepartmentDAO departmentDAO = DAOFactory.createDepartmentDao();
+        DepartmentDAO departmentDao = DaoFactory.createDepartmentDao();
 
-        //Tests
-        System.out.println("===== TEST 1: Department INSERT =====");
-        Department dep = new Department(null,"Medicine");
-        departmentDAO.insert(dep);
-        System.out.println("Department Inserted!");
+        System.out.println("\n===== TEST 1: Department INSERT =====");
+        Department newDepartment = new Department(6, "Music");
+        departmentDao.insert(newDepartment);
+        System.out.println(" Inserted! New id: " + newDepartment.getId());
 
+        System.out.println("\n===== TEST 2: DELETE =====");
+        System.out.print("Enter id for delete test: ");
+        int id = sc.nextInt();
+        departmentDao.deleteById(id);
+        System.out.println(" Delete completed! ");
 
-        System.out.println("===== TEST 2: Department DELETE =====");
-        departmentDAO.deleteById(7);
-        System.out.println("Deleted! ");
+        System.out.println("\n===== TEST 3: Department findById =====");
+        Department dep = departmentDao.findById(1);
+        System.out.println(dep);
 
+        System.out.println("\n===== TEST 4: Department findAll =====");
+        List<Department> list = departmentDao.findAll();
+        for (Department d : list) {
+            System.out.println(d);
+        }
+
+        System.out.println("\n===== TEST 5: Department UPDATE =====");
+        Department dep2 = departmentDao.findById(1);
+        dep2.setName("Food");
+        departmentDao.update(dep2);
+        System.out.println(" Update completed! ");
+
+        sc.close();
     }
 }

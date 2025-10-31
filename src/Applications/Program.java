@@ -2,7 +2,7 @@ package Applications;
 
 import Model.Entities.Department;
 import Model.Entities.Seller;
-import Model.dao.DAOFactory;
+import Model.dao.DaoFactory;
 import Model.dao.SellerDAO;
 
 import java.util.Date;
@@ -13,7 +13,7 @@ public class Program {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        SellerDAO sellerDAO = DAOFactory.createSellerDao();
+        SellerDAO sellerDAO = DaoFactory.createSellerDao();
 
         //Tests
         System.out.println("===== TEST 1: seller findById =====");
