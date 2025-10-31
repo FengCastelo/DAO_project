@@ -1,6 +1,5 @@
 package Model.dao;
 
-
 import Model.Entities.Department;
 import Model.Entities.Seller;
 
